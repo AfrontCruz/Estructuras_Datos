@@ -1,69 +1,75 @@
 #include <stdlib.h>
 #include "PilaDin.h"
 
-void Initialize(pila *s)
+void
+Initialize (pila *s)
 {
-    s->tamanio = 0;
-    s->tope = NULL;
+  s->tamanio = 0;
+  s->tope = NULL;
 
-    return;
+  return;
 }
 
-void Push(pila *s, element e)
+void
+Push (pila *s, element e)
 {
-    nodo *nuevo_nodo = malloc(sizeof(nodo));
+  nodo *nuevo_nodo = malloc (sizeof (nodo));
 
-    nuevo_nodo->abajo = s->tope;
-    s->tope = nuevo_nodo;
-    s->tope->e = e;
-    s->tamanio++;
+  nuevo_nodo->abajo = s->tope;
+  s->tope = nuevo_nodo;
+  s->tope->e = e;
+  s->tamanio++;
 
-    return;
+  return;
 }
 
-element Pop(pila *s)
+element
+Pop (pila *s)
 {
-    element retorno;
-    nodo *auxiliar;
+  element retorno;
+  nodo *auxiliar;
 
-    retorno = s->tope->e;
-    auxiliar = s->tope->abajo;
-    free(s->tope);
-    s->tope = auxiliar;
-    s->tamanio--;
+  retorno = s->tope->e;
+  auxiliar = s->tope->abajo;
+  free (s->tope);
+  s->tope = auxiliar;
+  s->tamanio--;
 
-    return retorno;
+  return retorno;
 }
 
-boolean Empty(pila *s)
+boolean
+Empty (pila *s)
 {
-    boolean empty;
+  boolean empty;
 
-    if(s->tamanio = 0)
-        empty = TRUE;
-    else
-        empty = FALSE;
+  if (s->tamanio = 0)
+    empty = TRUE;
+  else
+    empty = FALSE;
 
-    return empty;
+  return empty;
 }
 
-int Size(pila *s)
+int
+Size (pila *s)
 {
-    return s->tamanio;
+  return s->tamanio;
 }
 
-void Destroy(pila *s)
+void
+Destroy (pila *s)
 {
-    nodo* auxiliar;
+  nodo *auxiliar;
 
-    while(s->tope != NULL)
+  while (s->tope != NULL)
     {
-        auxiliar = s->tope->abajo;
-        free(s->tope);
-        s->tope = auxiliar;
+      auxiliar = s->tope->abajo;
+      free (s->tope);
+      s->tope = auxiliar;
     }
 
-    s->tamanio = 0;
+  s->tamanio = 0;
 
-    return;
+  return;
 }
