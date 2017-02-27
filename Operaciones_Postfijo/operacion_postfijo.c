@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "PilaDin.h"
 
-float Realizar_operaciones(char *postfijo, int *variables)
+float Realizar_operaciones(char *postfijo, float *variables)
 {
   int i, j;
   float resultado = 0;
@@ -23,26 +23,34 @@ float Realizar_operaciones(char *postfijo, int *variables)
 		{
 			float variable_1, variable_2;
 			case '+':
-				variable_1 = Pop(&operaciones).valor;
-				variable_2 = Pop(&operaciones).valor;
+				e = Pop(&operaciones);
+				variable_1 = e.valor;
+				e = Pop(&operaciones);
+				variable_2 = e.valor;
 				e.valor = variable_1 + variable_2;
 				Push(&operaciones, e);
 				break;
 			case '-':
-				variable_1 = Pop(&operaciones).valor;
-				variable_2 = Pop(&operaciones).valor;
+				e = Pop(&operaciones);
+				variable_1 = e.valor;
+				e = Pop(&operaciones);
+				variable_2 = e.valor;
 				e.valor = variable_1 - variable_2;
 				Push(&operaciones, e);
 				break;
 			case '*':
-				variable_1 = Pop(&operaciones).valor;
-				variable_2 = Pop(&operaciones).valor;
+				e = Pop(&operaciones);
+				variable_1 = e.valor;
+				e = Pop(&operaciones);
+				variable_2 = e.valor;
 				e.valor = variable_1 * variable_2;
 				Push(&operaciones, e);
 				break;
 			case '/':
-				variable_1 = Pop(&operaciones).valor;
-				variable_2 = Pop(&operaciones).valor;
+				e = Pop(&operaciones);
+				variable_1 = e.valor;
+				e = Pop(&operaciones);
+				variable_2 = e.valor;
 				e.valor = variable_1 / variable_2;
 				Push(&operaciones, e);
 				break;
@@ -56,16 +64,18 @@ float Realizar_operaciones(char *postfijo, int *variables)
 		}
 	}
 
-	resultado = Pop(&operaciones).valor;
+	e = Pop(&operaciones);
+	resultado = e.valor;
 
 	Destroy(&operaciones);
 
 	return resultado;
 }
 
-int *Obtener_variables (char *postfijo)
+float *Obtener_variables (char *postfijo)
 {
-	int i, *valores = malloc(sizeof(int) * 27);
+	int i;
+	float *valores = malloc(sizeof(valores) * 27);
 
 //Inicializamos a cero el arreglo que contendrá los valores de las variables.
 	for (i = 0; i < 27; i++)
@@ -78,8 +88,8 @@ int *Obtener_variables (char *postfijo)
 	for (i = 0; i < 27; i++)
 		if (valores[i] > 0)
 		{
-			printf("\nIntroduzca el valor de %c: ", 'A' + i);
-			scanf("%d", valores + i);
+			//printf("\nIntroduzca el valor de %c: ", 'A' + i);
+			scanf("%f", &valores[i]);
 		}
 
 	return valores;
@@ -88,7 +98,8 @@ int *Obtener_variables (char *postfijo)
 int main (void)
 {
 	char postfijo[101];
-	float resultado = 0, *variables, i;
+	float resultado = 0, *variables;
+	int i;
 
 	fgets(postfijo, 100, stdin);
 
