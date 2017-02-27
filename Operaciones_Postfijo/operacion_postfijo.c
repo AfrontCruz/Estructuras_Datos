@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <stdio.h>
 #include <stdlib.h>
 #include "PilaDin.h"
@@ -216,4 +215,3 @@ int main (void)
 
 	return 0;
 }
->>>>>>> c85cf1f7dab834121ae3ae5a0488b9bba37a41a9
