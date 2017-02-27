@@ -80,7 +80,7 @@ float *Obtener_variables (char *postfijo)
 	for (i = 0; i < 27; i++)
 		if (valores[i] > 0)
 		{
-//			printf("\nIntroduzca el valor de %c: ", 'A' + i);
+			printf("\nIntroduzca el valor de %c: ", 'A' + i);
 			scanf("%f", valores + i);
 		}
 
