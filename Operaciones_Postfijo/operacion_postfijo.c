@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "PilaDin.h"
+#include "TADPilaDin.h"
 
-float Realizar_operaciones(char *postfijo, int *variables)
+int Realizar_operaciones(char *postfijo, int *variables)
 {
-  int i, j;
-  float resultado = 0;
-  pila operaciones;
-  element e;
+	int resultado = 0, i, j;
+	pila operaciones;
+	elemento e;
 
 	Initialize(&operaciones);
 
@@ -16,43 +15,43 @@ float Realizar_operaciones(char *postfijo, int *variables)
 		if(postfijo[i] >= 'A' && postfijo[i] <= 'Z')
 		{
 			e.valor = variables[postfijo[i] - 'A'];
-			Push(&operaciones, e);
+			Push(e, &operaciones);
 			break;
 		}
 		switch(postfijo[i])
 		{
-			float variable_1, variable_2;
+			int variable_1, variable_2;
 			case '+':
 				variable_1 = Pop(&operaciones).valor;
 				variable_2 = Pop(&operaciones).valor;
 				e.valor = variable_1 + variable_2;
-				Push(&operaciones, e);
+				Push(e, &operaciones);
 				break;
 			case '-':
 				variable_1 = Pop(&operaciones).valor;
 				variable_2 = Pop(&operaciones).valor;
 				e.valor = variable_1 - variable_2;
-				Push(&operaciones, e);
+				Push(e, &operaciones);
 				break;
 			case '*':
 				variable_1 = Pop(&operaciones).valor;
 				variable_2 = Pop(&operaciones).valor;
 				e.valor = variable_1 * variable_2;
-				Push(&operaciones, e);
+				Push(e, &operaciones);
 				break;
 			case '/':
 				variable_1 = Pop(&operaciones).valor;
 				variable_2 = Pop(&operaciones).valor;
 				e.valor = variable_1 / variable_2;
-				Push(&operaciones, e);
+				Push(e, &operaciones);
 				break;
 			case '^':
 				variable_1 = Pop(&operaciones).valor;
 				variable_2 = Pop(&operaciones).valor;
 				e.valor = variable_1;
 				for(j = 1; j < variable_2; j++)
-					e.valor *= variable_1;
-				Push(&operaciones, e);
+					e.resultado *= variable_1;
+				Push(e, &operaciones);
 		}
 	}
 
@@ -78,7 +77,7 @@ int *Obtener_variables (char *postfijo)
 	for (i = 0; i < 27; i++)
 		if (valores[i] > 0)
 		{
-			printf("\nIntroduzca el valor de %c: ", 'A' + i);
+			printf("\nIntroduzca el valor de: %c", 'A' + i);
 			scanf("%d", valores + i);
 		}
 
@@ -88,7 +87,7 @@ int *Obtener_variables (char *postfijo)
 int main (void)
 {
 	char postfijo[101];
-	float resultado = 0, *variables, i;
+	int resultado = 0, *variables, i;
 
 	fgets(postfijo, 100, stdin);
 
@@ -97,7 +96,7 @@ int main (void)
 
 	free(variables);
 
-	printf("\nEl resultado es: %d\n", resultado);
+	printf("\nEl resultado es: %d", resultado);
 
 	return 0;
 }
