@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "PilaDin.h"
 
-float Realizar_operaciones(char *postfijo, int *variables)
+float Realizar_operaciones(char *postfijo, float *variables)
 {
   int i, j;
   float resultado = 0;
@@ -17,38 +17,38 @@ float Realizar_operaciones(char *postfijo, int *variables)
 		{
 			e.valor = variables[postfijo[i] - 'A'];
 			Push(&operaciones, e);
-			break;
+			continue;
 		}
 		switch(postfijo[i])
 		{
 			float variable_1, variable_2;
 			case '+':
-				variable_1 = Pop(&operaciones).valor;
 				variable_2 = Pop(&operaciones).valor;
+				variable_1 = Pop(&operaciones).valor;
 				e.valor = variable_1 + variable_2;
 				Push(&operaciones, e);
 				break;
 			case '-':
-				variable_1 = Pop(&operaciones).valor;
 				variable_2 = Pop(&operaciones).valor;
+				variable_1 = Pop(&operaciones).valor;
 				e.valor = variable_1 - variable_2;
 				Push(&operaciones, e);
 				break;
 			case '*':
-				variable_1 = Pop(&operaciones).valor;
 				variable_2 = Pop(&operaciones).valor;
+				variable_1 = Pop(&operaciones).valor;
 				e.valor = variable_1 * variable_2;
 				Push(&operaciones, e);
 				break;
 			case '/':
-				variable_1 = Pop(&operaciones).valor;
 				variable_2 = Pop(&operaciones).valor;
+				variable_1 = Pop(&operaciones).valor;
 				e.valor = variable_1 / variable_2;
 				Push(&operaciones, e);
 				break;
 			case '^':
-				variable_1 = Pop(&operaciones).valor;
 				variable_2 = Pop(&operaciones).valor;
+				variable_1 = Pop(&operaciones).valor;
 				e.valor = variable_1;
 				for(j = 1; j < variable_2; j++)
 					e.valor *= variable_1;
@@ -63,23 +63,25 @@ float Realizar_operaciones(char *postfijo, int *variables)
 	return resultado;
 }
 
-int *Obtener_variables (char *postfijo)
+float *Obtener_variables (char *postfijo)
 {
-	int i, *valores = malloc(sizeof(int) * 27);
+	float *valores = malloc(sizeof(float) * 27);
+	int i;
 
 //Inicializamos a cero el arreglo que contendrá los valores de las variables.
 	for (i = 0; i < 27; i++)
-		valores[i] = 0;
+		valores[i] = 0.0f;
 //Buscamos qué variables aparecen en la operación.
 	for (i = 0; postfijo[i] != '\n'; i++)
 		if(postfijo[i] >= 'A' && postfijo[i] <= 'Z')
 			valores[postfijo[i] - 'A']++;
+	for (i = 0; i < 27; i++)
 //Pedimos los varoler de todas las variables.
 	for (i = 0; i < 27; i++)
 		if (valores[i] > 0)
 		{
-			printf("\nIntroduzca el valor de %c: ", 'A' + i);
-			scanf("%d", valores + i);
+//			printf("\nIntroduzca el valor de %c: ", 'A' + i);
+			scanf("%f", valores + i);
 		}
 
 	return valores;
@@ -91,13 +93,12 @@ int main (void)
 	float resultado = 0, *variables, i;
 
 	fgets(postfijo, 100, stdin);
-
 	variables = Obtener_variables(postfijo);
 	resultado = Realizar_operaciones(postfijo, variables);
 
 	free(variables);
 
-	printf("\nEl resultado es: %d\n", resultado);
+	printf("\nEl resultado es: %.2f\n", resultado);
 
 	return 0;
 }

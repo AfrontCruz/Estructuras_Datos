@@ -8,7 +8,7 @@ typedef char boolean;
 typedef struct
 {
     char conteo;
-    int valor;
+    float valor;
 }element;
 
 typedef struct
