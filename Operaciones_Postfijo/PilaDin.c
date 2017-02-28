@@ -41,14 +41,10 @@ Pop (pila *s)
 boolean
 Empty (pila *s)
 {
-  boolean empty;
-
-  if (s->tamanio = 0)
-    empty = TRUE;
-  else
-    empty = FALSE;
-
-  return empty;
+  if(s->tope == NULL)
+    return TRUE;
+  
+  return FALSE;
 }
 
 int

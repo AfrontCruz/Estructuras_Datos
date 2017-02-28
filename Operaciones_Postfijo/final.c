@@ -1,7 +1,6 @@
 #include "PilaDin.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 boolean Verify_Parenthesis (char *auxiliar);
 char *Postfijo (char *cadena);
@@ -91,7 +90,7 @@ Verify_Parenthesis (char *auxiliar)
 }
 
 int
-main ()
+main (void)
 {
   char auxiliar[101], *postfijo;
 
