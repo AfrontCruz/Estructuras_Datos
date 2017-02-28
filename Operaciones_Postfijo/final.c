@@ -27,11 +27,25 @@ Postfijo (char *cadena)
 			case '-':
 			case '*':
 			case '/':
-			  e.conteo = cadena[i];
-			  Push (&operadores, e);
+				e = Tope(&operadores);
+				if(cadena[i] < e.conteo)
+					{
+						e.conteo = cadena[i];
+						Push (&operadores, e);
+					}
+				else
+					while(cadena[i] >= e.conteo
+						&& !Empty(&operadores))
+					{
+						postfijo = realloc (postfijo, sizeof (char) * (j + 2));
+						e = Pop(&operadores);
+				      	postfijo[j] = e.conteo;
+				      	e = Tope(&operadores);
+				      	j++;
+					}
 			  break;
 			case ')':
-			  e.conteo = cadena[i];
+			  e = Pop(&operadores);
 			  while (e.conteo != '(')
 			    {
 			      postfijo = realloc (postfijo, sizeof (char) * (j + 2));
@@ -46,6 +60,9 @@ Postfijo (char *cadena)
 			  j++;
 		}
     }
+    postfijo = realloc (postfijo, sizeof (char) * (j + 2));
+    postfijo[j] = '\0';
+
   Destroy (&operadores);
 
   return postfijo;

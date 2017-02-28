@@ -69,3 +69,10 @@ Destroy (pila *s)
 
   return;
 }
+
+element
+Tope(pila *s)
+{
+  element r = s->tope->e;
+  return r;
+}

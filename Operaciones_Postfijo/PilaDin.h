@@ -31,5 +31,6 @@ element Pop(pila *s);
 boolean Empty(pila *s);
 int Size(pila *s);
 void Destroy(pila *s);
+element tope(pila *s);
 
 #endif // PILA_H_INCLUDED
