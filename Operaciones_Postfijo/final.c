@@ -27,7 +27,7 @@ Postfijo (char *cadena)
 			case '-':
 			case '*':
 			case '/':
-				e = Tope(&operadores);
+				e = Top(&operadores);
 				if(cadena[i] < e.conteo)
 					{
 						e.conteo = cadena[i];
@@ -40,7 +40,7 @@ Postfijo (char *cadena)
 						postfijo = realloc (postfijo, sizeof (char) * (j + 2));
 						e = Pop(&operadores);
 				      	postfijo[j] = e.conteo;
-				      	e = Tope(&operadores);
+				      	e = Top(&operadores);
 				      	j++;
 					}
 			  break;
