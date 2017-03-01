@@ -10,7 +10,7 @@ Postfijo (char *cadena)
 {
   pila operadores;
   char *postfijo;
-  element e;
+  elemento e;
   int i, j;
 
   Initialize (&operadores);
@@ -72,7 +72,7 @@ boolean
 Verify_Parenthesis (char *auxiliar)
 {
   pila parentesis;
-  element e;
+  elemento e;
   int i;
   boolean verify;
 

@@ -11,7 +11,7 @@ Initialize (pila *s)
 }
 
 void
-Push (pila *s, element e)
+Push (pila *s, elemento e)
 {
   nodo *nuevo_nodo = malloc (sizeof (nodo));
 
@@ -23,10 +23,10 @@ Push (pila *s, element e)
   return;
 }
 
-element
+elemento
 Pop (pila *s)
 {
-  element retorno;
+  elemento retorno;
   nodo *auxiliar;
 
   retorno = s->tope->e;
@@ -70,9 +70,8 @@ Destroy (pila *s)
   return;
 }
 
-element
-Tope(pila *s)
+elemento
+Top(pila *s)
 {
-  element r = s->tope->e;
-  return r;
+  return s->tope->e;
 }

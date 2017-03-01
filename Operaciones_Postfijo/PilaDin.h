@@ -9,11 +9,11 @@ typedef struct
 {
     char conteo;
     float valor;
-}element;
+}elemento;
 
 typedef struct
 {
-    element e;
+    elemento e;
     struct nodo *abajo;
 }nodo;
 
@@ -26,11 +26,11 @@ typedef struct
 //Encabezados de funciones
 
 void Initialize(pila *s);
-void Push(pila *s, element e);
-element Pop(pila *s);
+void Push(pila *s, elemento e);
+elemento Pop(pila *s);
 boolean Empty(pila *s);
 int Size(pila *s);
 void Destroy(pila *s);
-element tope(pila *s);
+elemento Tope(pila *s);
 
 #endif // PILA_H_INCLUDED
