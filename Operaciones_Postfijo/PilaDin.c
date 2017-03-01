@@ -10,6 +10,12 @@ Initialize (pila *s)
   return;
 }
 
+elemento
+Top(pila *s)
+{
+  return s->tope->e;
+}
+
 void
 Push (pila *s, elemento e)
 {
@@ -68,10 +74,4 @@ Destroy (pila *s)
   s->tamanio = 0;
 
   return;
-}
-
-elemento
-Top(pila *s)
-{
-  return s->tope->e;
 }

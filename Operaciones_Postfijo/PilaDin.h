@@ -26,11 +26,11 @@ typedef struct
 //Encabezados de funciones
 
 void Initialize(pila *s);
+elemento Top(pila *s);
 void Push(pila *s, elemento e);
 elemento Pop(pila *s);
 boolean Empty(pila *s);
 int Size(pila *s);
 void Destroy(pila *s);
-elemento Tope(pila *s);
 
 #endif // PILA_H_INCLUDED
